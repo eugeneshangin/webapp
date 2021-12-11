@@ -5,32 +5,28 @@
     </div>
     <div class="row col q-gutter-x-lg q-gutter-y-lg q-pt-lg justify-center">
       <q-img
-        v-for="(link, i) in links"
+        v-for="(work, i) in works"
         :key="i"
-        :src="link"
+        :src="work.url"
         class="works-img"
       />
     </div>
   </q-page>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, computed } from 'vue'
+import { worksStore } from 'src/store'
 
 export default defineComponent({
 
   setup () {
+    onMounted(async () => {
+      await worksStore.actions.loadWorks()
+    })
+
+    const works = computed(() => worksStore.state.works)
     return {
-      links: [
-        'https://texterra.ru/upload/img/20-06-2018/09.jpg',
-        'https://texterra.ru/upload/img/18-10-2019/3/1.jpg',
-        'https://texterra.ru/upload/img/20-06-2018/04.jpg',
-        'https://texterra.ru/upload/img/20-06-2018/05.jpg',
-        'https://texterra.ru/upload/img/20-06-2018/07.jpg',
-        'https://texterra.ru/upload/img/20-06-2018/08.jpg',
-        'https://texterra.ru/upload/img/20-06-2018/06.jpg',
-        'https://texterra.ru/upload/img/20-06-2018/02.jpg',
-        'https://texterra.ru/upload/img/20-06-2018/03.jpg',
-      ]
+      works
     }
   }
 });
