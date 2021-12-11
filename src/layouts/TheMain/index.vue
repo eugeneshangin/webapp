@@ -1,6 +1,11 @@
 <template>
-  <q-layout view="hHh Lpr fFf">
-    <Header />
+  <q-layout
+    view="hHh Lpr fFf"
+    @resize="resize"
+  >
+    <Header
+      :is-small="isSmall"
+    />
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -18,12 +23,22 @@
   </q-layout>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Header from './Header.vue'
 
 export default defineComponent({
   components: {
     Header
+  },
+
+  setup () {
+    const isSmall = ref(false)
+    return {
+      resize: (size: { height: number, width: number }) => {
+        isSmall.value = size.width < 650
+      },
+      isSmall
+    }
   }
 })
 </script>

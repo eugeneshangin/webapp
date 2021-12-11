@@ -11,7 +11,10 @@
         >
           {{ $t('header.name').toString() }}
         </div>
-        <div class="row q-gutter-x-md">
+        <div
+          v-if="!isSmall"
+          class="row q-gutter-x-md"
+        >
           <div
             class="main-menu cursor-pointer"
             @click="goTo('education')"
@@ -40,7 +43,7 @@
             color="black"
             class="cursor-pointer"
           >
-            <q-menu>
+            <q-menu auto-close>
               <q-list>
                 <q-item
                   clickable
@@ -62,20 +65,78 @@
             </q-menu>
           </q-icon>
         </div>
+        <div v-else>
+          <q-icon
+            name="o_menu"
+            color="black"
+            class="cursor-pointer"
+          >
+            <q-menu auto-close>
+              <q-list>
+                <q-item
+                  clickable
+                  @click="goTo('education')"
+                >
+                  <q-item-section>
+                    {{ $t('header.education').toString() }}
+                  </q-item-section>
+                </q-item>
+                <q-item
+                  clickable
+                  @click="goTo('examples')"
+                >
+                  <q-item-section>
+                    {{ $t('header.works').toString() }}
+                  </q-item-section>
+                </q-item>
+                <q-item
+                  clickable
+                  @click="goTo('contacts')"
+                >
+                  <q-item-section>
+                    {{ $t('header.contacts').toString() }}
+                  </q-item-section>
+                </q-item>
+                <q-item
+                  clickable
+                  @click="openInstagram"
+                >
+                  <q-item-section>
+                    Instagram
+                  </q-item-section>
+                </q-item>
+                <q-item
+                  clickable
+                  @click="changeLang('')"
+                >
+                  <q-item-section>
+                    {{ language }}
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-icon>
+        </div>
       </q-toolbar-title>
     </q-toolbar>
   </q-header>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { openURL } from 'quasar'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
+  props: {
+    isSmall: {
+      type: Boolean
+    }
+  },
   setup() {
     const router = useRouter()
     const i18n = useI18n()
+    const language = computed(() => i18n.locale.value === 'ru' ? 'English' : 'Русский')
     return {
       openInstagram: () => {
         openURL('https://www.instagram.com/lena_ipatova_')
@@ -86,8 +147,13 @@ export default defineComponent({
         })
       },
       changeLang: (locale: string) => {
+        if (!locale) {
+          i18n.locale.value = i18n.locale.value === 'ru' ? 'en-US' : 'ru'
+          return
+        }
         i18n.locale.value = locale
-      }
+      },
+      language
     }
   },
 })
