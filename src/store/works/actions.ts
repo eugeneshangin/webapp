@@ -22,4 +22,12 @@ export default class Actions extends BaseActions<
     this.mutations.setIsPreloaded(true)
     this.mutations.setWorks(examples)
   }
+
+  async addWorkExample (work: WorkExample): Promise<void> {
+    try {
+      await works.addWorkExample(work)
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
 }
