@@ -6,7 +6,7 @@
   "author": "Eugene Shangin <eugeneshanginr@gmail.com>",
   "private": true,
   "scripts": {
-    "run": "node ./server.js",
+    "start": "node ./server.js",
     "lint": "eslint --ext .js,.ts,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
