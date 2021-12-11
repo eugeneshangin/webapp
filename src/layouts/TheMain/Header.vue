@@ -4,7 +4,7 @@
     elevated
   >
     <q-toolbar>
-      <q-toolbar-title class="row items-center justify-around">
+      <q-toolbar-title class="row items-baseline justify-around">
         <div
           class="logo cursor-pointer"
           @click="goTo('main')"
