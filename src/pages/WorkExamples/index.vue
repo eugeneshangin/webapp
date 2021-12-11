@@ -1,9 +1,9 @@
 <template>
-  <q-page class="q-ml-xl q-mr-md q-py-xl column">
+  <q-page class="сolumn page">
     <div class="text-h5 flex justify-center works-title">
      {{ $t('works.title').toString() }}
     </div>
-    <div class="row col q-gutter-x-lg q-gutter-y-lg q-pt-lg">
+    <div class="row col q-gutter-x-lg q-gutter-y-lg q-pt-lg justify-center">
       <q-img
         v-for="(link, i) in links"
         :key="i"
@@ -36,6 +36,9 @@ export default defineComponent({
 });
 </script>
 <style lang="sass" scoped>
+.page
+  margin: 8vh 8vh 0 8vh
+
 .works-title
   color: #444
   font-size: 24px

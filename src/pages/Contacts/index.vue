@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-ml-xl q-mr-md q-py-lg row items-center justify-center">
+  <q-page class="row items-center justify-center">
     {{ $t('contacts.description').toString() }}
   </q-page>
 </template>
