@@ -1,8 +1,8 @@
 {
   "name": "lending",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Lending by Lenka",
+  "productName": "Elena Ipatova",
   "author": "Eugene Shangin <eugeneshanginr@gmail.com>",
   "private": true,
   "scripts": {
