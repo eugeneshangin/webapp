@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const axios = require('axios');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -27,6 +28,16 @@ app.get('/api/works', (req, res) => {
 app.post('/api/works', (req, res) => {
   // TODO: добавить проверки
   links.push(req.body.url)
+})
+
+app.post('/api/message', (req, res) => {
+  axios.get('https://api.telegram.org/bot5034290784:AAFmBBkZHBaEe2fg7BcRa9U8AY8-TlUU-WY/sendMessage', {
+    params: {
+      chat_id: -656407812,
+      parse_mode: 'html',
+      text: req.body.text
+    }
+  })
 })
 
 app.listen(port, () => console.log(`App listening at http://0.0.0.0:${port}`));
