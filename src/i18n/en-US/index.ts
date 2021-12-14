@@ -12,7 +12,7 @@ export default {
     description: '© 2021 SMM manager Elena Ipatova'
   },
   main: {
-    description: 'This is me hueme. I say yes, else what'
+    description: 'I make Instagram profitable 💰'
   },
   education: {
     description: 'Here i am teacher'

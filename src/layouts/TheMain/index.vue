@@ -35,7 +35,7 @@ export default defineComponent({
     const isSmall = ref(false)
     return {
       resize: (size: { height: number, width: number }) => {
-        isSmall.value = size.width < 650
+        isSmall.value = size.width < 700
       },
       isSmall
     }
