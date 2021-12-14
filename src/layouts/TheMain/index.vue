@@ -26,18 +26,20 @@
 import { defineComponent, ref } from 'vue'
 import Header from './Header.vue'
 
+const smallSize = 700
+
 export default defineComponent({
   components: {
     Header
   },
 
   setup () {
-    const isSmall = ref(false)
+    const isSmall = ref(window.innerWidth < smallSize)
     return {
       resize: (size: { height: number, width: number }) => {
-        isSmall.value = size.width < 700
+        isSmall.value = size.width < smallSize
       },
-      isSmall
+      isSmall,
     }
   }
 })

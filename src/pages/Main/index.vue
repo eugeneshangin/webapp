@@ -1,8 +1,10 @@
 <template>
-  <q-page class="column">
+  <q-page class="row">
     <q-img
       class="main-image"
       src="/images/main.jpg"
+      fit="cover"
+      position="10% 15%"
     >
       <div class="absolute-bottom text-subtitle1 text-center">
         {{ $t('main.description').toString() }}
