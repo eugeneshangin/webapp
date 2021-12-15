@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@types/jsonwebtoken": "^8.5.6",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.6.5",
     "express": "^4.15.2",
     "quasar": "^2.0.0",
@@ -24,13 +26,16 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
     "@quasar/app": "^3.0.0",
+    "@types/crypto-js": "^4.0.2",
     "@types/express": "^4.17.13",
     "@types/node": "^12.20.21",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
+    "crypto-js": "^4.1.1",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^7.0.0",
+    "jsonwebtoken": "^8.5.1",
     "vuex-smart-module": "^1.0.0"
   },
   "browserslist": [
