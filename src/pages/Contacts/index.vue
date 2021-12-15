@@ -23,7 +23,7 @@
 </template>
 <script lang='ts'>
 import { defineComponent, ref, computed } from 'vue'
-import { message } from 'src/api'
+import api from 'src/api'
 export default defineComponent({
   setup () {
     const text = ref('')
@@ -32,7 +32,7 @@ export default defineComponent({
       text,
       buttonColor,
       add: () => {
-        void message.send({
+        void api.message.send({
           text: text.value
         })
       }

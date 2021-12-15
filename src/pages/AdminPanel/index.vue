@@ -22,12 +22,15 @@
   </q-page>
 </template>
 <script lang='ts'>
-import { defineComponent, ref, computed } from 'vue'
-import { worksStore } from 'src/store'
+import { defineComponent, ref, computed, onMounted } from 'vue'
+import { worksStore, userStore } from 'src/store'
 export default defineComponent({
   setup () {
     const url = ref('')
     const buttonColor = computed(() => url.value ? 'primary' : 'black')
+    onMounted(async () => {
+      await userStore.actions.loadMe()
+    })
     return {
       url,
       buttonColor,
