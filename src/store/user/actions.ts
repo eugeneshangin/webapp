@@ -20,16 +20,19 @@ export default class Actions extends BaseActions<
     } catch (e) {
       return Promise.reject(e)
     }
+    this.mutations.setIsPreloaded(true)
     await this.actions.setUser(user)
   }
   async loadMe (): Promise<void> {
     let user: User
+    if (this.state.isPreloaded) return
     try {
       user = await api.user.load()
     } catch (e) {
       console.error('Error load user')
       return
     }
+    this.mutations.setIsPreloaded(true)
     await this.actions.setUser(user)
   }
 

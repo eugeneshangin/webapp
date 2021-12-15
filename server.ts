@@ -55,7 +55,6 @@ const users = [
 
 app.use((req, res, next) => {
   if (req.headers.authorization) {
-    console.log(req.headers)
     jwt.verify(
       req.headers.authorization,
       tokenKey,
