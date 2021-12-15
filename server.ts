@@ -113,7 +113,7 @@ app.post('/api/works', (req, res) => {
   }
 })
 
-app.post('/api/auth', (req: MessageRequest) => {
+app.post('/api/message', (req: MessageRequest) => {
   void axios.get('https://api.telegram.org/bot5034290784:AAFmBBkZHBaEe2fg7BcRa9U8AY8-TlUU-WY/sendMessage', {
     params: {
       chat_id: -656407812,
