@@ -20,7 +20,7 @@ export default class Actions extends BaseActions<
     } catch (e) {
       return Promise.reject(e)
     }
-    this.actions.setUser(user)
+    await this.actions.setUser(user)
   }
   async loadMe (): Promise<void> {
     let user: User
@@ -30,12 +30,13 @@ export default class Actions extends BaseActions<
       console.error('Error load user')
       return
     }
-    this.actions.setUser(user)
+    await this.actions.setUser(user)
   }
 
-  setUser (user: User): void {
+  setUser (user: User): Promise<void> {
     this.mutations.setUser(user)
     SessionStorage.set('authorization', user.token)
     setAuthToken(user.token)
+    return Promise.resolve()
   }
 }
