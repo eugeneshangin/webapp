@@ -126,13 +126,13 @@ app.post('/api/message', (req: MessageRequest) => {
 app.get('/api/me', (req, res) => {
   const user = (req as AuthorizationRequest).user
   if (!!user)
-    return res.status(200).json({
+    res.json({
       id: user.id,
       login: user.login,
       token: jwt.sign({ id: user.id }, tokenKey),
     })
   else
-    return res
+    res
       .status(401)
       .json({ message: 'Not authorized' })
 })
