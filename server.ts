@@ -1,6 +1,6 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const axios = require('axios');
+import express, { Request } from 'express'
+import bodyParser from 'body-parser'
+import axios from 'axios'
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -8,6 +8,18 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.static('dist/spa'));
 app.use(bodyParser.json());
+
+interface WorksRequest extends Request {
+  body: {
+    url: string
+  }
+}
+
+interface MessageRequest extends Request {
+  body: {
+    text: string
+  }
+}
 
 const links = [
   'https://texterra.ru/upload/img/20-06-2018/09.jpg',
@@ -21,17 +33,17 @@ const links = [
   'https://texterra.ru/upload/img/20-06-2018/03.jpg',
 ]
 
-app.get('/api/works', (req, res) => {
+app.get('/api/works', (req, res: { json: (arg0: { url: string; }[]) => void; }) => {
   res.json(links.map(l => ({ url: l })));
 })
 
-app.post('/api/works', (req, res) => {
+app.post('/api/works', (req: WorksRequest) => {
   // TODO: добавить проверки
   links.push(req.body.url)
 })
 
-app.post('/api/message', (req, res) => {
-  axios.get('https://api.telegram.org/bot5034290784:AAFmBBkZHBaEe2fg7BcRa9U8AY8-TlUU-WY/sendMessage', {
+app.post('/api/message', (req: MessageRequest) => {
+  void axios.get('https://api.telegram.org/bot5034290784:AAFmBBkZHBaEe2fg7BcRa9U8AY8-TlUU-WY/sendMessage', {
     params: {
       chat_id: -656407812,
       parse_mode: 'html',
