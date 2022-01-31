@@ -43,13 +43,12 @@ interface AuthRequest extends Request {
   }
 }
 
-const tokenKey = sha256('ShaSha').toString()
-
+const tokenKey = process.env.PRIVATE_TOKEN || sha256('ShaSha').toString()
 const users = [
   {
     'id': 1,
     'login': 'superuser',
-    'password': 'cGWHcycs'
+    'password': process.env.SUPER_USER_PASSWORD || 'superuser'
   }
 ]
 
