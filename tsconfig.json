@@ -1,6 +1,22 @@
 {
   "extends": "@quasar/app/tsconfig-preset",
   "compilerOptions": {
-    "baseUrl": "."
-  }
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": false,
+    "types": [
+      "jest",
+      "quasar"
+    ],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ]
+  },
+  "exclude": [
+    "/dist",
+    ".quasar",
+    "node_modules"
+  ]
 }

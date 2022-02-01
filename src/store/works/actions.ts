@@ -2,7 +2,7 @@ import { Actions as BaseActions } from 'vuex-smart-module'
 import Getters from './getters'
 import Mutations from './mutations'
 import State from './state'
-import api  from 'src/api'
+import api from 'src/api'
 import { WorkExample } from './types'
 
 export default class Actions extends BaseActions<
