@@ -1,0 +1,47 @@
+.node-cache-update: &node-cache-update
+  cache:
+    - key: npm
+      policy: pull-push
+      paths:
+        - .npm/
+    - key: node-modules-cache-$CI_COMMIT_REF_SLUG
+      policy: pull-push
+      paths:
+        - node_modules/
+
+.node-cache-use: &node-cache-use
+  cache:
+    - key: npm
+      policy: pull
+      paths:
+        - .npm/
+    - key: node-modules-cache-$CI_COMMIT_REF_SLUG
+      policy: pull
+      paths:
+        - node_modules/
+
+.node-image: &node-image
+  image: node:16.12.0-alpine
+
+stages:
+  - install
+  - lint
+  - test-unit
+
+install:
+  stage: install
+  <<: *node-image
+  <<: *node-cache-update
+  before_script:
+    - apk add python3 make g++
+    - apk add --no-cache bash git openssh
+  script:
+    - npm i --cache .npm --prefer-offline
+    - npm i -g @quasar/cli
+
+lint:
+  stage: lint
+  <<: *node-image
+  <<: *node-cache-use
+  script:
+    - npm run lint
