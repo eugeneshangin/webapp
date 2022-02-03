@@ -1,19 +1,19 @@
 <template>
   <q-page class="q-pa-lg">
     <div class="text-h5 ">
-      Оставить заявку
+      {{ $t('contacts.title').toString() }}
     </div>
     <div>
       <q-input
         :model-value="text"
         v-model="text"
         type="text"
-        label="Укажите свои контактные данные и кратко опишите что бы вы хотели"
+        :label="$t('contacts.description').toString()"
       />
     </div>
     <q-btn
       class="q-mt-lg"
-      label="Отправить"
+      :label="$t('contacts.send').toString()"
       flat
       dense
       :color="buttonColor"
